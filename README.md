@@ -29,19 +29,8 @@ pip install tk
 
 ## See all the code here
 ```python
-from rembg import remove
-from PIL import Image
-import os
-import tkinter as tk
-from tkinter import filedialog
-from tkinter import ttk
-import threading
-
-  
 def stop_tool():
   stop_event.set()
-  run_batch_removal_tool_button.configure(text="Run Background Removal Tool", command=threading.Thread(target=run_batch_removal_tool).start) 
-
 
 def select_app_info():
   if named_directory_out.get() == '' and named_directory_in.get() == '':
@@ -99,9 +88,9 @@ def run_batch_removal_tool():
     #Saving the image in the given path
     output.save(output_path)  
     
-  app_info.set("PROCESS STOPPED" if pic_list else "NO IMAGES IN FOLDER")
+  app_info.set("PROCESS STOPPED" if pic_list else "FOLDER IS EMPTY")
   image_thread = threading.Thread(target=run_batch_removal_tool)
-  run_batch_removal_tool_button.configure(text="Run Background Romoval Tool", command=image_thread.start) 
+  run_batch_removal_tool_button.configure(text="Run Background Removal Tool", command=image_thread.start) 
   stop_event.clear()
   
   
@@ -141,7 +130,6 @@ set_default_out_button = ttk.Button(root, text="Set as Default", command=set_def
 
 #define event
 stop_event = threading.Event()
-# image_thread = threading.Thread(target=run_batch_removal_tool)
 
 #Run Tool Button
 run_batch_removal_tool_button = ttk.Button(root, text="Run Background Romoval Tool", command=threading.Thread(target=run_batch_removal_tool).start)
