@@ -9,8 +9,6 @@ import threading
   
 def stop_tool():
   stop_event.set()
-  # run_batch_removal_tool_button.configure(text="Run Background Removal Tool", command=threading.Thread(target=run_batch_removal_tool).start) 
-
 
 def select_app_info():
   if named_directory_out.get() == '' and named_directory_in.get() == '':
