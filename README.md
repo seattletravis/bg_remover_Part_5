@@ -6,9 +6,9 @@ bg remover is a python program meant to be ran inside of an editor, use any edit
 
 Run bg_remover_with_GUI, then select both folders using the GUI navigation.
 
-## [Video Tutorial!](https://youtu.be/MIAukamudl4)
+## [Video Tutorial!](https://youtu.be/xK_40n2hVpg)
 
-Watch this video to see the code in action, or if you have issues running it, or if you want to learn how it was written. This is a coding tutorial video. [Video Link](https://youtu.be/MIAukamudl4)
+Watch this video to see the code in action, or if you have issues running it, or if you want to learn how it was written. This is a coding tutorial video. [Video Link](https://youtu.be/xK_40n2hVpg)
 
 ## Installation
 
