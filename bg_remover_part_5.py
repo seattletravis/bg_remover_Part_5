@@ -82,12 +82,11 @@ def run_batch_removal_tool():
       
     
     
-  app_info.set("PROCESS REPORT" if pic_list else "FOLDER IS EMPTY")
+  app_info.set("PROCESS STOPPED" if pic_list else "FOLDER IS EMPTY")
   if stop_event.is_set() == False:
     total_items += 1
     processing_status.set(f"Processing: {total_items} files of {len(pic_list)} total files in folder")
     app_info.set("PROCESS COMPLETE!")
-    
     
   processing_status.set(f"Processed: {total_items} files of {len(pic_list)} total files in folder")
   image_thread = threading.Thread(target=run_batch_removal_tool) 
