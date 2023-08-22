@@ -1,4 +1,4 @@
-# Uncha - by Travis Lamberte & YouTube Video Tutorial Part 4
+# Uncha - by Travis Lamberte & YouTube Video Tutorial Part 5
 
 # Batch background removal tool with GUI
 
@@ -8,7 +8,7 @@ Run bg_remover_with_GUI, then select both folders using the GUI navigation.
 
 ## [Video Tutorial!](https://youtu.be/xK_40n2hVpg)
 
-Watch this video to see the code in action, or if you have issues running it, or if you want to learn how it was written. This is a coding tutorial video. [Video Link](https://youtu.be/xK_40n2hVpg)
+In this video tutorial we add the progress bar and some error handling! Watch this video to see the code in action, or if you have issues running it, or if you want to learn how it was written. This is a coding tutorial video. [Video Link](https://youtu.be/xK_40n2hVpg)
 
 ## Installation
 

@@ -6,7 +6,7 @@ from tkinter import filedialog
 from tkinter import ttk
 import threading
 
-  
+   
 def stop_tool():
   stop_event.set()
 
@@ -39,12 +39,23 @@ def get_path_out():
   select_app_info()
 
 def run_batch_removal_tool():
+  total_items = 1
+  image_processed_count = 0
+  nonimage_count = 0
+  already_processed_count = 0
+  
+  image_processed.set(f"Images processed: {image_processed_count}")
+  nonimage.set(f"Not an image file, skipped: {nonimage_count}")
+  already_processed.set(f"Images already processed, skipped: {already_processed_count}")
+  
   run_batch_removal_tool_button.configure(text="Stop Background Removal Tool", command=stop_tool)
   pic_list = os.listdir(named_directory_in.get())
   app_info.set("PROCESSING")
 
   #Loop over all Images
   for pic in pic_list:
+    total_items = image_processed_count + nonimage_count + already_processed_count
+    processing_status.set(f"Processing: {total_items} files of {len(pic_list)} total files in folder")
     if stop_event.is_set():
       break
     
@@ -55,18 +66,29 @@ def run_batch_removal_tool():
 
     # Check if image exists
     if os.path.exists(output_path):
-        continue
+      already_processed_count += 1
+      already_processed.set(f"Images already processed, skipped: {already_processed_count}")
+      continue
     
-    # Processing the image
-    input = Image.open(input_path)
-
-    # Removing the background from the given Image
-    output = remove(input)
-
-    #Saving the image in the given path
-    output.save(output_path)  
+    try:
+      # open image file, remove background & save to given path
+      input = Image.open(input_path)
+      output = remove(input)
+      output.save(output_path)  
+      image_processed_count += 1
+      image_processed.set(f"Images processed: {image_processed_count}")
+    except:
+      nonimage_count += 1
+      nonimage.set(f"Not an image file, skipped: {nonimage_count}")
+      
     
-  app_info.set("PROCESS STOPPED" if pic_list else "FOLDER IS EMPTY")
+  app_info.set("PROCESS REPORT" if pic_list else "FOLDER IS EMPTY")
+  if stop_event.is_set():
+    image_processed_count += 1
+    image_processed.set(f"Images processed: {image_processed_count}")
+    
+  total_items += 1
+  processing_status.set(f"Processed: {total_items} files of {len(pic_list)} total files in folder")
   image_thread = threading.Thread(target=run_batch_removal_tool)
   run_batch_removal_tool_button.configure(text="Run Background Removal Tool", command=image_thread.start) 
   stop_event.clear()
@@ -86,7 +108,12 @@ app_info = tk.StringVar(root, "")
 select_app_info()
 
 
-root.geometry("640x275")
+processing_status = tk.StringVar(root)
+image_processed = tk.StringVar(root)
+nonimage = tk.StringVar(root)
+already_processed = tk.StringVar(root)
+
+root.geometry("640x400")
 root.title("UNCHA - Batch Background Removal Tool")
 root.columnconfigure(0, weight=1)
 root.columnconfigure(1, weight=1)
@@ -118,5 +145,10 @@ quit_button = ttk.Button(root, text="Quit", command=root.destroy).grid(row=4, co
 
 #Application Information
 information = ttk.Label(root, textvariable=app_info).grid(pady=10, row=5, column=1)
+
+processing_line_1 = ttk.Label(root, textvariable=processing_status).grid(pady=6, row=6, column=1)
+processing_line_2 = ttk.Label(root, textvariable=image_processed).grid(row=7, column=1)
+processing_line_3 = ttk.Label(root, textvariable=already_processed).grid(row=8, column=1)
+processing_line_4 = ttk.Label(root, textvariable=nonimage).grid(row=9, column=1)
 
 root.mainloop()
