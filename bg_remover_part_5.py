@@ -86,6 +86,7 @@ def run_batch_removal_tool():
   if stop_event.is_set() == False:
     total_items += 1
     processing_status.set(f"Processing: {total_items} files of {len(pic_list)} total files in folder")
+    app_info.set("PROCESS COMPLETE!")
     
     
   processing_status.set(f"Processed: {total_items} files of {len(pic_list)} total files in folder")
