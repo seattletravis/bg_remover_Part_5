@@ -2,7 +2,7 @@
 
 # Batch background removal tool with GUI
 
-bg remover is a python program meant to be ran inside of an editor, use any editor that has access to os. (Or run from terminal/CMD) First setup a folder where you'll keep you images that need the bg removed, then create an empty folder in another location where the images with transparent backgrounds will get saved.
+Uncha is a Windows Application for removing all image backgrounds from a specified folder and saving those transparent image files to another file folder determined by the user. This is an opensource project and all the source code is here to use. GUI is written using tkinter and backgrounds are removed using rembg.
 
 Run bg_remover_with_GUI, then select both folders using the GUI navigation.
 
