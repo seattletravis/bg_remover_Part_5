@@ -2,7 +2,7 @@
 
 # Batch background removal tool with GUI
 
-Uncha is a Windows Application for removing all image backgrounds from a specified folder and saving those transparent image files to another file folder determined by the user. This is an opensource project and all the source code is here to use. GUI is written using tkinter and backgrounds are removed using rembg.
+Uncha is a Windows Application for removing all image backgrounds from images located in a specified folder and saving those transparent image files to another file folder also specified by the user. This is an opensource project and all the source code is here to use. GUI is written using tkinter and backgrounds are removed using rembg.
 
 Run bg_remover_with_GUI, then select both folders using the GUI navigation.
 
